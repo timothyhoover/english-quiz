@@ -1,5 +1,5 @@
 /* Style Guide
-Green:#62DBC8
+Green: #62DBC8
 Yellow: #FFD80A
 Purple: #9330AF */
 
@@ -23,21 +23,162 @@ button {
   outline: none;
 }
 
-.container {
+button {
+  cursor: pointer;
+}
+
+/* Start Quiz Box */
+.container-start {
+  display: none;
   text-align: center;
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
-  margin-right: -50%;
   transform: translate(-50%, -50%);
+  padding: 5rem;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.116);
+  border-radius: 0.7rem;
 }
-.container .start-btn button {
-  display: block;
-  justify-content: center;
-  width: 10rem;
+
+/* Quiz Start Title */
+.container-start .info-title {
+  padding: 2rem;
+}
+
+/* Start Button */
+.container-start .start-btn button {
+  width: 15rem;
+  padding: 1rem;
+  border-radius: 0.7rem;
+  color: #000;
+  border: 2px solid #78ddce;
+  background-color: transparent;
+  transition: 0.3s ease;
+}
+
+.container-start .start-btn button:hover {
+  width: 15rem;
   padding: 1rem;
   border-radius: 0.7rem;
   color: #fff;
+  border: none;
+  border: 2px solid #78ddce;
+  background-color: #78ddce;
+}
+
+/* Quiz Game Container */
+.container-quiz {
+  text-align: left;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 5rem 4rem 5rem;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.116);
+  border-radius: 0.7rem;
+}
+
+.quiz-title {
+  font-size: 2rem;
+  font-weight: 600;
+  padding: 3rem 0 2rem 0;
+}
+
+.container-quiz .question {
+  font-size: 2.2rem;
+  padding-bottom: 2rem;
+}
+
+/* Quiz Answers */
+.container-quiz .option {
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 1.5rem;
+  padding: 0rem 0rem 0.5rem 2rem;
+  border-radius: 0.7rem;
+  border: 1px solid #9330af;
+  display: inline-flex;
+  justify-content: left;
+  align-items: center;
+}
+
+/* Quiz Answers Hover */
+.container-quiz .option:hover {
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 1.5rem;
+  padding: 0rem 0rem 0.5rem 2rem;
+  border-radius: 0.7rem;
+  border: 1px solid #9330af;
+  background-color: rgb(252, 252, 252);
+  display: inline-flex;
+  justify-content: left;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Circle Answer Prefix */
+.container-quiz .option .option-prefix {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1rem;
+  background-color: transparent;
+  border: 1px solid #62dbc8;
+  border-radius: 50%;
+  transform: translate(0, 20%);
+}
+
+.container-quiz .option .option-prefix:active {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1rem;
   background-color: #62dbc8;
+  border: 1px solid #62dbc8;
+  border-radius: 50%;
+  transform: translate(0, 20%);
+}
+
+.container-quiz .option .option-text {
+  transform: translate(0, 15%);
+}
+
+.container-quiz .footer {
+  height: 6rem;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Footer Section Num of questions and next button */
+.footer .question-number {
+  font-weight: 600;
+}
+
+.footer .next-btn {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 12rem;
+  padding: 0.6rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #62dbc8;
+  background-color: #62dbc8;
+  transition: 0.3s ease;
+}
+
+.footer .next-btn:hover {
+  font-size: 1.5rem;
+  text-align: center;
+  width: 12rem;
+  padding: 0.6rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #78ddce;
+  background-color: #78ddce;
+  transition: 0.3s ease;
 }
