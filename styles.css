@@ -69,6 +69,7 @@ button {
 
 /* Quiz Game Container */
 .container-quiz {
+  display: none;
   text-align: left;
   margin: 0;
   position: absolute;
@@ -180,5 +181,92 @@ button {
   color: #fff;
   border: 2px solid #78ddce;
   background-color: #78ddce;
+}
+
+/* End Container with results, message, and restart & quit buttons */
+.container-end {
+  display: none;
+  text-align: center;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  padding: 0 5rem 2rem 5rem;
+  box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.116);
+  border-radius: 0.7rem;
+}
+
+.icon-end {
+  width: 100%;
+  padding: 4rem 0 0 0;
+  font-size: 7rem;
+}
+
+.container-end .end-title {
+  padding: 2rem;
+}
+
+.container-end .results {
+  font-size: 2rem;
+}
+
+.container-end .container-end-btn {
+  height: 6rem;
+  width: 100%;
+  margin: 2.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container-end .restart-btn button {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  width: 14rem;
+  padding: 0.6rem;
+  margin-right: 3rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #62dbc8;
+  background-color: #62dbc8;
   transition: 0.3s ease;
+}
+
+.container-end .restart-btn button:hover {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  width: 14rem;
+  padding: 0.6rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #78ddce;
+  background-color: #78ddce;
+}
+
+.container-end .quit-btn button {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  width: 14rem;
+  padding: 0.6rem;
+  border-radius: 0.7rem;
+  color: #000;
+  border: 2px solid #9330af;
+  background-color: transparent;
+  transition: 0.3s ease;
+}
+
+.container-end .quit-btn button:hover {
+  font-size: 1.8rem;
+  font-weight: 500;
+  text-align: center;
+  width: 14rem;
+  padding: 0.6rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #9330af;
+  background-color: #9330af;
 }
