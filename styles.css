@@ -1,9 +1,9 @@
-/* Style Guide
+/* Brand Colors
 Green: #62DBC8
 Yellow: #FFD80A
 Purple: #9330AF */
 
-:root {
+html {
   font-size: 62.5%;
   box-sizing: border-box;
 }
@@ -69,7 +69,7 @@ button {
 
 /* Quiz Game Container */
 .container-quiz {
-  display: none;
+  /* display: none; */
   text-align: left;
   margin: 0;
   position: absolute;
@@ -97,11 +97,11 @@ button {
   width: 100%;
   height: 5rem;
   margin-bottom: 1.5rem;
-  padding: 0rem 0rem 0.5rem 2rem;
+  padding: 0rem 2rem 0.5rem 2rem;
   border-radius: 0.7rem;
   border: 1px solid #9330af;
   display: inline-flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -110,12 +110,12 @@ button {
   width: 100%;
   height: 5rem;
   margin-bottom: 1.5rem;
-  padding: 0rem 0rem 0.5rem 2rem;
+  padding: 0rem 2rem 0.5rem 2rem;
   border-radius: 0.7rem;
   border: 1px solid #9330af;
   background-color: rgb(252, 252, 252);
   display: inline-flex;
-  justify-content: left;
+  justify-content: space-between;
   align-items: center;
   cursor: pointer;
 }
@@ -127,7 +127,18 @@ button {
   height: 1.6rem;
   margin-right: 1rem;
   background-color: transparent;
-  border: 1px solid #62dbc8;
+  border: 1px solid #000;
+  border-radius: 50%;
+  transform: translate(0, 20%);
+}
+
+.container-quiz .option .option-prefix:hover {
+  display: inline-block;
+  width: 1.6rem;
+  height: 1.6rem;
+  margin-right: 1rem;
+  background-color: #a9a9a9;
+  border: 1px solid #000;
   border-radius: 50%;
   transform: translate(0, 20%);
 }
@@ -144,6 +155,31 @@ button {
 }
 
 .container-quiz .option .option-text {
+  width: 100%;
+  transform: translate(0, 15%);
+  display: inline-flex;
+  justify-content: left;
+}
+
+.container-quiz .option .icon-check {
+  color: #62dbc8;
+  text-align: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid #62dbc8;
+  border-radius: 50%;
+  padding: 0.2rem;
+  transform: translate(0, 10%);
+}
+
+.container-quiz .option .icon-x {
+  color: #b80000;
+  text-align: center;
+  width: 2.8rem;
+  height: 2.8rem;
+  border: 1px solid #b80000;
+  border-radius: 50%;
+  padding: 0.2rem;
   transform: translate(0, 15%);
 }
 
@@ -160,8 +196,35 @@ button {
   font-weight: 600;
 }
 
-.footer .next-btn {
+.footer .check-btn {
   font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  width: 12rem;
+  padding: 0.6rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #62dbc8;
+  background-color: #62dbc8;
+  transition: 0.3s ease;
+}
+
+.footer .check-btn:hover {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  width: 12rem;
+  padding: 0.6rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #78ddce;
+  background-color: #78ddce;
+}
+
+.footer .next-btn {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 500;
   text-align: center;
   width: 12rem;
   padding: 0.6rem;
@@ -174,6 +237,7 @@ button {
 
 .footer .next-btn:hover {
   font-size: 1.5rem;
+  font-weight: 500;
   text-align: center;
   width: 12rem;
   padding: 0.6rem;
