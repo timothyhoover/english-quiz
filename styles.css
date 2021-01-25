@@ -29,7 +29,7 @@ button {
 
 /* Start Quiz Box */
 .container-start {
-  display: none;
+  /* display: none; */
   text-align: center;
   margin: 0;
   position: absolute;
@@ -69,7 +69,7 @@ button {
 
 /* Quiz Game Container */
 .container-quiz {
-  /* display: none; */
+  display: none;
   text-align: left;
   margin: 0;
   position: absolute;
@@ -87,13 +87,13 @@ button {
   padding: 3rem 0 2rem 0;
 }
 
-.container-quiz .question {
+.container-quiz .question-text {
   font-size: 2.2rem;
   padding-bottom: 2rem;
 }
 
 /* Quiz Answers */
-.container-quiz .option {
+.container-quiz .option-list .option {
   width: 100%;
   height: 5rem;
   margin-bottom: 1.5rem;
@@ -105,8 +105,22 @@ button {
   align-items: center;
 }
 
+.container-quiz .option-list .option.correct {
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 1.5rem;
+  padding: 0rem 2rem 0.5rem 2rem;
+  border-radius: 0.7rem;
+  background-color: #62dbc8;
+  border: 1px solid #62dbc8;
+  color: white;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
 /* Quiz Answers Hover */
-.container-quiz .option:hover {
+.container-quiz .option-list .option:hover {
   width: 100%;
   height: 5rem;
   margin-bottom: 1.5rem;
@@ -120,8 +134,8 @@ button {
   cursor: pointer;
 }
 
-/* Circle Answer Prefix */
-.container-quiz .option .option-prefix {
+/* Circle to the left of the Answer */
+.container-quiz .option-list .option .option-prefix {
   display: inline-block;
   width: 1.6rem;
   height: 1.6rem;
@@ -131,37 +145,27 @@ button {
   border-radius: 50%;
   transform: translate(0, 20%);
 }
-
-.container-quiz .option .option-prefix:hover {
+.container-quiz .option-list .option .option-prefix.selected {
   display: inline-block;
   width: 1.6rem;
   height: 1.6rem;
   margin-right: 1rem;
   background-color: #a9a9a9;
-  border: 1px solid #000;
+  border: 1px solid #a9a9a9;
   border-radius: 50%;
   transform: translate(0, 20%);
 }
 
-.container-quiz .option .option-prefix:active {
-  display: inline-block;
-  width: 1.6rem;
-  height: 1.6rem;
-  margin-right: 1rem;
-  background-color: #62dbc8;
-  border: 1px solid #62dbc8;
-  border-radius: 50%;
-  transform: translate(0, 20%);
-}
-
-.container-quiz .option .option-text {
+/* Answer Text */
+.container-quiz .option-list .option .option-text {
   width: 100%;
   transform: translate(0, 15%);
   display: inline-flex;
   justify-content: left;
 }
 
-.container-quiz .option .icon-check {
+/* Font awesome icon styling */
+.container-quiz .option-list .option .icon-check {
   color: #62dbc8;
   text-align: center;
   width: 2.8rem;
@@ -172,7 +176,7 @@ button {
   transform: translate(0, 10%);
 }
 
-.container-quiz .option .icon-x {
+.container-quiz .option-list .option .icon-x {
   color: #b80000;
   text-align: center;
   width: 2.8rem;
@@ -183,7 +187,7 @@ button {
   transform: translate(0, 15%);
 }
 
-/* Footer Section Num of questions and next button */
+/* Footer Section: num of questions, check and next button */
 .container-quiz .footer {
   height: 6rem;
   width: 100%;
