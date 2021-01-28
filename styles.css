@@ -27,9 +27,12 @@ button {
   cursor: pointer;
 }
 
+.hidden {
+  display: none;
+}
+
 /* Start Quiz Box */
 .container-start {
-  /* display: none; */
   text-align: center;
   margin: 0;
   position: absolute;
@@ -69,27 +72,37 @@ button {
 
 /* Quiz Game Container */
 .container-quiz {
-  display: none;
   text-align: left;
   margin: 0;
   position: absolute;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 0 5rem 2rem 5rem;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.116);
   border-radius: 0.7rem;
 }
 
-.quiz-title {
+.container-quiz .quiz-title {
   font-size: 2rem;
   font-weight: 600;
-  padding: 3rem 0 2rem 0;
+  width: 100%;
+  padding: 2rem 5rem 2rem 5rem;
+  box-shadow: 0 0.5rem 0rem 0rem rgba(209, 209, 209, 0.479);
+}
+
+.container-quiz .progress-bar {
+  height: 0.5rem;
+  width: 20%;
+  background-color: #ffd80a;
 }
 
 .container-quiz .question-text {
   font-size: 2.2rem;
-  padding-bottom: 2rem;
+  padding: 2.5rem 5rem 2rem 5rem;
+}
+
+.container-quiz .option-list {
+  padding: 0 5rem 2rem 5rem;
 }
 
 /* Quiz Answers */
@@ -100,6 +113,19 @@ button {
   padding: 0rem 2rem 0.5rem 2rem;
   border-radius: 0.7rem;
   border: 1px solid #9330af;
+  background-color: transparent;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.container-quiz .option-list .option.selected-option {
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 1.5rem;
+  padding: 0rem 2rem 0.5rem 2rem;
+  border-radius: 0.7rem;
+  border: 1px solid #9330af;
+  background-color: #eeeeee;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -113,6 +139,20 @@ button {
   border-radius: 0.7rem;
   background-color: #62dbc8;
   border: 1px solid #62dbc8;
+  color: #fff;
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.container-quiz .option-list .option.wrong {
+  width: 100%;
+  height: 5rem;
+  margin-bottom: 1.5rem;
+  padding: 0rem 2rem 0.5rem 2rem;
+  border-radius: 0.7rem;
+  background-color: #b80000;
+  border: 1px solid #b80000;
   color: white;
   display: inline-flex;
   justify-content: space-between;
@@ -127,7 +167,7 @@ button {
   padding: 0rem 2rem 0.5rem 2rem;
   border-radius: 0.7rem;
   border: 1px solid #9330af;
-  background-color: rgb(252, 252, 252);
+  background-color: #eeeeee;
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
@@ -145,15 +185,47 @@ button {
   border-radius: 50%;
   transform: translate(0, 20%);
 }
-.container-quiz .option-list .option .option-prefix.selected {
+
+.container-quiz .option-list .option .option-prefix.selected-prefix {
   display: inline-block;
   width: 1.6rem;
   height: 1.6rem;
   margin-right: 1rem;
   background-color: #a9a9a9;
-  border: 1px solid #a9a9a9;
+  box-shadow: 0 0 0 0.1rem #fff inset;
+  border: 1px solid #000;
   border-radius: 50%;
   transform: translate(0, 20%);
+}
+
+.container-quiz .option-list .option .option-prefix.correct-prefix {
+  display: none;
+}
+
+/* Font awesome icon styling */
+.container-quiz .option-list .option .icon-check {
+  color: #fff;
+  text-align: center;
+  font-size: 1.6rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0.2rem;
+  margin-right: 1rem;
+  transform: translate(0, -5%);
+}
+
+.container-quiz .option-list .option .icon-x {
+  color: #fff;
+  text-align: center;
+  width: 1.6rem;
+  height: 1.6rem;
+  padding: 0.2rem;
+  margin-right: 1rem;
+  transform: translate(0, -5%);
+}
+
+.container-quiz .option-list .option .option-prefix.wrong-prefix {
+  display: none;
 }
 
 /* Answer Text */
@@ -164,33 +236,11 @@ button {
   justify-content: left;
 }
 
-/* Font awesome icon styling */
-.container-quiz .option-list .option .icon-check {
-  color: #62dbc8;
-  text-align: center;
-  width: 2.8rem;
-  height: 2.8rem;
-  border: 1px solid #62dbc8;
-  border-radius: 50%;
-  padding: 0.2rem;
-  transform: translate(0, 10%);
-}
-
-.container-quiz .option-list .option .icon-x {
-  color: #b80000;
-  text-align: center;
-  width: 2.8rem;
-  height: 2.8rem;
-  border: 1px solid #b80000;
-  border-radius: 50%;
-  padding: 0.2rem;
-  transform: translate(0, 15%);
-}
-
 /* Footer Section: num of questions, check and next button */
 .container-quiz .footer {
   height: 6rem;
   width: 100%;
+  padding: 0 5rem 2rem 5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;

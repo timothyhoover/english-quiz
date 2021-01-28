@@ -25,20 +25,21 @@ const option = document.querySelectorAll('.option');
 const optionList = document.querySelector('.option-list');
 const optionText = document.querySelector('.option-text');
 const containerQuiz = document.querySelector('.container-quiz');
-const checkBtn = document.querySelector('.check-btn');
-let iconCheck = '<div class="icon-check"><i class="fas fa-check"></i></div>';
-let iconX = '<div class="icon-x"><i class="fas fa-times"></i></div>';
 
 let questionCount = 0;
 let userScore = 0;
 
+// Starting quiz container
+window.addEventListener('load', () => {
+  containerStart.classList.remove('hidden');
+});
+
 // Start Quiz
 startBtn.onclick = () => {
-  containerQuiz.style.display = 'block';
-  containerStart.style.display = 'none';
+  containerQuiz.classList.remove('hidden');
+  containerStart.classList.add('hidden');
   displayQuestionCount(questionCount);
   displayQuestion(questionCount);
-  displayOptions(questionCount);
 };
 
 // Next Button
@@ -61,16 +62,13 @@ const displayQuestionCount = index => {
   bottomQuestionNumber.innerHTML = totalQuesCount;
 };
 
-// Get question data from array - questions.js
+// Get question and option data from array at questions.js
 const displayQuestion = index => {
   const questionText = document.querySelector('.question-text');
   let questionArray = '<p>' + questions[index].question + '</p>';
   questionText.innerHTML = questionArray;
-};
 
-// Get option data from array - questions.js
-const displayOptions = index => {
-  let optionArray =
+  let availableOptions =
     '<div class="option">' +
     '<div class="option-prefix"></div>' +
     '<p class="option-text">' +
@@ -90,38 +88,49 @@ const displayOptions = index => {
     '</p>' +
     '</div>';
 
-  optionList.innerHTML = optionArray;
+  optionList.innerHTML = availableOptions;
+
   const option = document.querySelectorAll('.option');
+  const optionPrefix = document.querySelectorAll('.option-prefix');
+
   for (let i = 0; i < option.length; i++) {
-    option[i].setAttribute('onclick', 'evaluateAnswer(this)');
+    option[i].addEventListener('click', function () {
+      optionSelected(this, optionPrefix[i]);
+    });
   }
 };
 
-// Check Button Evaluation
-checkBtn.onclick = () => {
-  evaluateAnswer(questionCount);
-};
-
-// Get answer data from array - questions.js
-function evaluateAnswer(answer) {
+// When user selects an option the colors of option and option prefix change
+const optionSelected = (answer, answerPrefix) => {
   let userAnswer = answer.textContent;
   let correctAnswer = questions[questionCount].answer;
   let allOptions = questions[questionCount].options;
 
-  if (userAnswer == correctAnswer) {
-    userScore++;
-    console.log(userScore);
-    answer.classList.add('correct');
-    console.log('Answer is correct');
-  }
-}
+  // answer.style.backgroundColor = '#eeeeee';
+  // answerPrefix.style.boxShadow = '0 0 0 0.1rem #fff inset';
+  // answerPrefix.style.backgroundColor = '#a9a9a9';
+
+  answer.classList.add('selected-option');
+  answerPrefix.classList.add('selected-prefix');
+
+  let iconCheck = '<div class="icon-check"><i class="fas fa-check"></i></div>';
+  let iconX = '<div class="icon-x"><i class="fas fa-times"></i></div>';
+  const checkBtn = document.querySelector('.check-btn');
+  checkBtn.addEventListener('click', function () {
+    if (userAnswer === correctAnswer) {
+      userScore++;
+      answer.classList.add('correct');
+      answerPrefix.classList.add('correct-prefix');
+      answer.insertAdjacentHTML('afterbegin', iconCheck);
+      console.log(userScore);
+      console.log('Correct Answer!');
+    } else if (userAnswer !== correctAnswer) {
+      answer.classList.add('wrong');
+      answerPrefix.classList.add('wrong-prefix');
+      answer.insertAdjacentHTML('afterbegin', iconX);
+      console.log('Wrong Answer!');
+    }
+  });
+};
 
 const finishQuiz = () => {};
-
-const prefixChange = () => {
-  const optionPrefix = document.querySelector('.option-prefix');
-  let userSelection = optionList.addEventListener('click');
-  if (userSelection) {
-    optionPrefix.style.backgroundColor = '#a9a9a9';
-  }
-};

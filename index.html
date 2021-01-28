@@ -22,8 +22,9 @@
     <script src="script.js" defer></script>
     <script src="questions.js" defer></script>
   </head>
+
   <body>
-    <div class="container-start">
+    <div class="container-start hidden">
       <div class="info-title">
         <h1>English Level Evaluator</h1>
       </div>
@@ -33,9 +34,12 @@
     </div>
 
     <!-- Quiz Container -->
-    <div class="container-quiz">
+    <div class="container-quiz hidden">
       <!-- Quiz Title -->
-      <div class="quiz-title">English Level Evaluation: A1 - B2</div>
+      <div class="quiz-title">
+        <span>English Level Evaluation: A1 - B2</span>
+      </div>
+      <div class="progress-bar" id="progress-bar"></div>
 
       <!-- Quiz Question -->
       <div class="question-text">
@@ -44,15 +48,16 @@
 
       <!-- Quiz Options -->
       <div class="option-list">
+        <!-- <div class="icon-check"><i class="fas fa-check"></i></div>
+        <div class="icon-x"><i class="fas fa-times"></i></div> -->
         <!-- <div class="option-prefix"></div>
-  
         <p class="option-text">the oldest of</p>
-        <div class="icon-check"><i class="fas fa-check"></i></div>
+        
       </div>
       <div class="option">
         <div class="option-prefix"></div>
         <p class="option-text">older than</p>
-        <div class="icon-x"><i class="fas fa-times"></i></div>
+        
       </div>
       <div class="option">
         <div class="option-prefix"></div>
@@ -69,7 +74,7 @@
     </div>
 
     <!-- Results Container -->
-    <div class="container-end">
+    <div class="container-end hidden">
       <!-- Result Icons -->
       <div class="icon-end">👍 🎉</div>
       <!-- Result Title -->
