@@ -125,41 +125,54 @@ const evaluateAnswer = (answer, answerPrefix) => {
   }
 
   let userAnswer = answer.textContent;
+  console.log(userAnswer);
   let correctAnswer = questions[questionCount].answer;
   let allOptions = optionList.children.length;
 
   answer.classList.add('selected-option');
   answerPrefix.classList.add('selected-prefix');
 
+  const showNextButton = () => {
+    optionList.classList.add('disabled');
+    nextBtn.style.display = 'block';
+    checkBtn.style.display = 'none';
+  };
+
   let iconCheck = '<div class="icon-check"><i class="fas fa-check"></i></div>';
   let iconX = '<div class="icon-x"><i class="fas fa-times"></i></div>';
 
   checkBtn.onclick = () => {
-    // When user checks answer all other options are disabled
-    optionList.classList.add('disabled');
-
     // Next button is displayed when user checks answer unless quiz ends
     const finishBtn = document.querySelector('.finish-btn');
     if (questionCount < questions.length - 1) {
-      nextBtn.style.display = 'block';
-      checkBtn.style.display = 'none';
+      nextBtn.style.display = 'none';
+      checkBtn.style.display = 'block';
     } else {
       showFinishButton();
     }
 
     // Answer evaluation
-    if (userAnswer === correctAnswer) {
+    if (userAnswer == undefined) {
+      console.log("You didn't select an answer");
+    } else if (userAnswer === correctAnswer) {
+      // When user checks answer all other options are disabled
+      showNextButton();
       userScore += 1;
       answer.classList.add('correct');
       answerPrefix.classList.add('correct-prefix');
       answer.insertAdjacentHTML('afterbegin', iconCheck);
       console.log(userScore);
       console.log('Correct Answer!');
-    } else {
+      userAnswer = undefined;
+    } else if (userAnswer !== correctAnswer) {
+      // When user checks answer all other options are disabled
+      showNextButton();
+      console.log(userAnswer);
       answer.classList.add('wrong');
       answerPrefix.classList.add('wrong-prefix');
       answer.insertAdjacentHTML('afterbegin', iconX);
       console.log('Wrong Answer!');
+      userAnswer = undefined;
 
       // If user selects wrong answer, the correct answer also appears
       for (let i = 0; i < allOptions; i++) {
