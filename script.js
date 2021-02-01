@@ -21,10 +21,12 @@ Functionality Layout
 const containerStart = document.querySelector('.container-start');
 const startBtn = document.querySelector('.start-btn');
 const nextBtn = document.querySelector('.next-btn');
-const option = document.querySelectorAll('.option');
 const optionList = document.querySelector('.option-list');
 const optionText = document.querySelector('.option-text');
 const containerQuiz = document.querySelector('.container-quiz');
+const checkBtn = document.querySelector('.check-btn');
+let option;
+let optionPrefix;
 
 let questionCount = 0;
 let userScore = 0;
@@ -65,8 +67,9 @@ const displayQuestionCount = index => {
 // Get question and option data from array at questions.js
 const displayQuestion = index => {
   const questionText = document.querySelector('.question-text');
-  let questionArray = '<p>' + questions[index].question + '</p>';
-  questionText.innerHTML = questionArray;
+  let currentQuestion = '<p>' + questions[index].question + '</p>';
+
+  questionText.innerHTML = currentQuestion;
 
   let availableOptions =
     '<div class="option">' +
@@ -90,33 +93,43 @@ const displayQuestion = index => {
 
   optionList.innerHTML = availableOptions;
 
-  const option = document.querySelectorAll('.option');
-  const optionPrefix = document.querySelectorAll('.option-prefix');
+  option = document.querySelectorAll('.option');
+  optionPrefix = document.querySelectorAll('.option-prefix');
 
   for (let i = 0; i < option.length; i++) {
     option[i].addEventListener('click', function () {
       optionSelected(this, optionPrefix[i]);
+      console.log('Counting the selection');
     });
   }
 };
 
 // When user selects an option the colors of option and option prefix change
 const optionSelected = (answer, answerPrefix) => {
+  // User can select different options
+  for (let i = 0; i < option.length; i++) {
+    option[i].classList.remove('selected-option');
+    optionPrefix[i].classList.remove('selected-prefix');
+  }
+
   let userAnswer = answer.textContent;
   let correctAnswer = questions[questionCount].answer;
-  let allOptions = questions[questionCount].options;
-
-  // answer.style.backgroundColor = '#eeeeee';
-  // answerPrefix.style.boxShadow = '0 0 0 0.1rem #fff inset';
-  // answerPrefix.style.backgroundColor = '#a9a9a9';
+  let allOptions = optionList.children.length;
+  // let allOptionPrefix = option.children.length;
 
   answer.classList.add('selected-option');
   answerPrefix.classList.add('selected-prefix');
 
   let iconCheck = '<div class="icon-check"><i class="fas fa-check"></i></div>';
   let iconX = '<div class="icon-x"><i class="fas fa-times"></i></div>';
+
   const checkBtn = document.querySelector('.check-btn');
   checkBtn.addEventListener('click', function () {
+    optionList.classList.add('disabled');
+    ``;
+    nextBtn.style.display = 'block';
+    checkBtn.style.display = 'none';
+
     if (userAnswer === correctAnswer) {
       userScore++;
       answer.classList.add('correct');
@@ -124,11 +137,20 @@ const optionSelected = (answer, answerPrefix) => {
       answer.insertAdjacentHTML('afterbegin', iconCheck);
       console.log(userScore);
       console.log('Correct Answer!');
-    } else if (userAnswer !== correctAnswer) {
+    } else {
       answer.classList.add('wrong');
       answerPrefix.classList.add('wrong-prefix');
       answer.insertAdjacentHTML('afterbegin', iconX);
       console.log('Wrong Answer!');
+
+      // If user selects wrong answer, the correct answer also appears
+      for (let i = 0; i < allOptions; i++) {
+        if (optionList.children[i].textContent === correctAnswer) {
+          optionPrefix[i].classList.add('correct-prefix');
+          optionList.children[i].setAttribute('class', 'option correct');
+          optionList.children[i].insertAdjacentHTML('afterbegin', iconCheck);
+        }
+      }
     }
   });
 };
