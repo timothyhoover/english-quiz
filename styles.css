@@ -72,6 +72,7 @@ button {
 
 /* Quiz Game Container */
 .container-quiz {
+  width: 60rem;
   text-align: left;
   margin: 0;
   position: absolute;
@@ -97,6 +98,7 @@ button {
 }
 
 .container-quiz .question-text {
+  width: 60rem;
   font-size: 2.2rem;
   padding: 2.5rem 5rem 2rem 5rem;
 }
@@ -308,7 +310,6 @@ button {
 
 /* End Container with results, message, and restart & quit buttons */
 .container-end {
-  display: none;
   text-align: center;
   margin: 0;
   position: absolute;

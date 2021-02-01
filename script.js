@@ -25,6 +25,7 @@ const optionList = document.querySelector('.option-list');
 const optionText = document.querySelector('.option-text');
 const containerQuiz = document.querySelector('.container-quiz');
 const checkBtn = document.querySelector('.check-btn');
+
 let option;
 let optionPrefix;
 
@@ -36,7 +37,6 @@ window.addEventListener('load', () => {
   containerStart.classList.remove('hidden');
 });
 
-// Start Quiz
 startBtn.onclick = () => {
   containerQuiz.classList.remove('hidden');
   containerStart.classList.add('hidden');
@@ -44,11 +44,12 @@ startBtn.onclick = () => {
   displayQuestion(questionCount);
 };
 
-// Next Button
 nextBtn.onclick = () => {
   if (questionCount < questions.length - 1) {
     questionCount++;
     displayQuestionCount(questionCount);
+    displayQuestion(questionCount);
+    resetQuestion();
   }
 };
 
@@ -62,6 +63,10 @@ const displayQuestionCount = index => {
     questions.length +
     '</span>';
   bottomQuestionNumber.innerHTML = totalQuesCount;
+
+  if (questions[index].number === questions.length) {
+    finishQuiz();
+  }
 };
 
 // Get question and option data from array at questions.js
@@ -95,18 +100,15 @@ const displayQuestion = index => {
 
   option = document.querySelectorAll('.option');
   optionPrefix = document.querySelectorAll('.option-prefix');
-
   for (let i = 0; i < option.length; i++) {
     option[i].addEventListener('click', function () {
-      optionSelected(this, optionPrefix[i]);
-      console.log('Counting the selection');
+      evaluateAnswer(this, optionPrefix[i]);
     });
   }
 };
 
-// When user selects an option the colors of option and option prefix change
-const optionSelected = (answer, answerPrefix) => {
-  // User can select different options
+const evaluateAnswer = (answer, answerPrefix) => {
+  // Let user change option
   for (let i = 0; i < option.length; i++) {
     option[i].classList.remove('selected-option');
     optionPrefix[i].classList.remove('selected-prefix');
@@ -115,7 +117,6 @@ const optionSelected = (answer, answerPrefix) => {
   let userAnswer = answer.textContent;
   let correctAnswer = questions[questionCount].answer;
   let allOptions = optionList.children.length;
-  // let allOptionPrefix = option.children.length;
 
   answer.classList.add('selected-option');
   answerPrefix.classList.add('selected-prefix');
@@ -123,13 +124,15 @@ const optionSelected = (answer, answerPrefix) => {
   let iconCheck = '<div class="icon-check"><i class="fas fa-check"></i></div>';
   let iconX = '<div class="icon-x"><i class="fas fa-times"></i></div>';
 
-  const checkBtn = document.querySelector('.check-btn');
-  checkBtn.addEventListener('click', function () {
+  checkBtn.onclick = () => {
+    // When user checks answer all other options are disabled
     optionList.classList.add('disabled');
-    ``;
+
+    // Next button is displayed when user checks answer
     nextBtn.style.display = 'block';
     checkBtn.style.display = 'none';
 
+    // Answer evaluation
     if (userAnswer === correctAnswer) {
       userScore++;
       answer.classList.add('correct');
@@ -152,7 +155,16 @@ const optionSelected = (answer, answerPrefix) => {
         }
       }
     }
-  });
+  };
 };
 
-const finishQuiz = () => {};
+const resetQuestion = () => {
+  nextBtn.style.display = 'none';
+  checkBtn.style.display = 'block';
+  optionList.classList.remove('disabled');
+};
+
+const finishQuiz = () => {
+  containerQuiz.classList.add('hidden');
+  containerEnd.classList.remove('hidden');
+};
