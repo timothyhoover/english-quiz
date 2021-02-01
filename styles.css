@@ -88,12 +88,16 @@ button {
   font-weight: 600;
   width: 100%;
   padding: 2rem 5rem 2rem 5rem;
-  box-shadow: 0 0.5rem 0rem 0rem rgba(209, 209, 209, 0.479);
 }
 
-.container-quiz .progress-bar {
+#myProgress {
+  width: 100%;
+  background-color: #d1d1d1;
+}
+
+#myBar {
   height: 0.5rem;
-  width: 20%;
+  width: 0%;
   background-color: #ffd80a;
 }
 

@@ -43,6 +43,7 @@ startBtn.onclick = () => {
   containerStart.classList.add('hidden');
   displayQuestionCount(questionCount);
   displayQuestion(questionCount);
+  updateProgressBar(questionCount);
 };
 
 nextBtn.onclick = () => {
@@ -50,6 +51,7 @@ nextBtn.onclick = () => {
   displayQuestionCount(questionCount);
   displayQuestion(questionCount);
   resetQuestion();
+  updateProgressBar(questionCount);
   console.log(questionCount);
 };
 
@@ -63,6 +65,18 @@ const displayQuestionCount = index => {
     questions.length +
     '</span>';
   bottomQuestionNumber.innerHTML = totalQuesCount;
+};
+
+// Update Progress Bar
+const updateProgressBar = index => {
+  let myBar = document.getElementById('myBar');
+  let width = 0;
+  if (width >= 100) {
+    clearInterval();
+  } else {
+    width = ((index + 1) / questions.length) * 100;
+    myBar.style.width = width + '%';
+  }
 };
 
 // Get question and option data from array at questions.js
