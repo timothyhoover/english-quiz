@@ -19,6 +19,7 @@ Functionality Layout
 
 // Get necessary quiz elements
 const containerStart = document.querySelector('.container-start');
+const containerEnd = document.querySelector('.container-end');
 const startBtn = document.querySelector('.start-btn');
 const nextBtn = document.querySelector('.next-btn');
 const optionList = document.querySelector('.option-list');
@@ -45,12 +46,11 @@ startBtn.onclick = () => {
 };
 
 nextBtn.onclick = () => {
-  if (questionCount < questions.length - 1) {
-    questionCount++;
-    displayQuestionCount(questionCount);
-    displayQuestion(questionCount);
-    resetQuestion();
-  }
+  questionCount++;
+  displayQuestionCount(questionCount);
+  displayQuestion(questionCount);
+  resetQuestion();
+  console.log(questionCount);
 };
 
 // Dynamically display the question number throughout the quiz
@@ -63,10 +63,6 @@ const displayQuestionCount = index => {
     questions.length +
     '</span>';
   bottomQuestionNumber.innerHTML = totalQuesCount;
-
-  if (questions[index].number === questions.length) {
-    finishQuiz();
-  }
 };
 
 // Get question and option data from array at questions.js
@@ -128,9 +124,14 @@ const evaluateAnswer = (answer, answerPrefix) => {
     // When user checks answer all other options are disabled
     optionList.classList.add('disabled');
 
-    // Next button is displayed when user checks answer
-    nextBtn.style.display = 'block';
-    checkBtn.style.display = 'none';
+    // Next button is displayed when user checks answer unless quiz ends
+    const finishBtn = document.querySelector('.finish-btn');
+    if (questionCount < questions.length - 1) {
+      nextBtn.style.display = 'block';
+      checkBtn.style.display = 'none';
+    } else {
+      showFinishButton();
+    }
 
     // Answer evaluation
     if (userAnswer === correctAnswer) {
@@ -164,7 +165,17 @@ const resetQuestion = () => {
   optionList.classList.remove('disabled');
 };
 
-const finishQuiz = () => {
+const showEndContainer = () => {
   containerQuiz.classList.add('hidden');
   containerEnd.classList.remove('hidden');
+};
+
+const showFinishButton = () => {
+  const finishBtn = document.querySelector('.finish-btn');
+  nextBtn.style.display = 'none';
+  checkBtn.style.display = 'none';
+  finishBtn.style.display = 'block';
+  finishBtn.onclick = () => {
+    showEndContainer();
+  };
 };

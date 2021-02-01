@@ -308,6 +308,32 @@ button {
   background-color: #78ddce;
 }
 
+.footer .finish-btn {
+  display: none;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  width: 13rem;
+  padding: 0.4rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #62dbc8;
+  background-color: #62dbc8;
+  transition: 0.3s ease;
+}
+
+.footer .finish-btn:hover {
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+  width: 13rem;
+  padding: 0.4rem;
+  border-radius: 0.7rem;
+  color: #fff;
+  border: 2px solid #78ddce;
+  background-color: #78ddce;
+}
+
 /* End Container with results, message, and restart & quit buttons */
 .container-end {
   text-align: center;
