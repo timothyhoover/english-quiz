@@ -135,7 +135,7 @@ const evaluateAnswer = (answer, answerPrefix) => {
 
     // Answer evaluation
     if (userAnswer === correctAnswer) {
-      userScore++;
+      userScore += 1;
       answer.classList.add('correct');
       answerPrefix.classList.add('correct-prefix');
       answer.insertAdjacentHTML('afterbegin', iconCheck);
@@ -165,7 +165,26 @@ const resetQuestion = () => {
   optionList.classList.remove('disabled');
 };
 
-const showEndContainer = () => {
+const showResultsBox = () => {
+  const results = document.querySelector('.results');
+  if (userScore > 3) {
+    let resultsText =
+      '<p>Congrats! You scored ' +
+      userScore +
+      ' <span>of</span> ' +
+      questions.length +
+      ' correct! Great job!</p>';
+    results.innerHTML = resultsText;
+  } else {
+    let resultsText =
+      '<p>Good effort! You scored ' +
+      userScore +
+      ' <span>of</span> ' +
+      questions.length +
+      ' correct. Try again to increase your score!</p>';
+    results.innerHTML = resultsText;
+  }
+
   containerQuiz.classList.add('hidden');
   containerEnd.classList.remove('hidden');
 };
@@ -176,6 +195,6 @@ const showFinishButton = () => {
   checkBtn.style.display = 'none';
   finishBtn.style.display = 'block';
   finishBtn.onclick = () => {
-    showEndContainer();
+    showResultsBox();
   };
 };
