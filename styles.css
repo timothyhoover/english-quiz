@@ -374,7 +374,7 @@ button {
   justify-content: center;
 }
 
-.container-end .restart-btn button {
+/* .container-end .restart-btn button {
   font-size: 1.8rem;
   font-weight: 500;
   text-align: center;
@@ -398,9 +398,9 @@ button {
   color: #fff;
   border: 2px solid #78ddce;
   background-color: #78ddce;
-}
+} */
 
-.container-end .quit-btn button {
+.container-end .restart-quiz button {
   font-size: 1.8rem;
   font-weight: 500;
   text-align: center;
@@ -413,7 +413,7 @@ button {
   transition: 0.3s ease;
 }
 
-.container-end .quit-btn button:hover {
+.container-end .restart-quiz button:hover {
   font-size: 1.8rem;
   font-weight: 500;
   text-align: center;

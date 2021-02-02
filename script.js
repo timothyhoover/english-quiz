@@ -22,6 +22,7 @@ const containerStart = document.querySelector('.container-start');
 const containerEnd = document.querySelector('.container-end');
 const startBtn = document.querySelector('.start-btn');
 const nextBtn = document.querySelector('.next-btn');
+const restartQuiz = document.querySelector('.restart-quiz');
 const optionList = document.querySelector('.option-list');
 const optionText = document.querySelector('.option-text');
 const containerQuiz = document.querySelector('.container-quiz');
@@ -32,6 +33,10 @@ let optionPrefix;
 
 let questionCount = 0;
 let userScore = 0;
+
+restartQuiz.onclick = () => {
+  window.location.reload();
+};
 
 // Starting quiz container
 window.addEventListener('load', () => {
@@ -52,7 +57,12 @@ nextBtn.onclick = () => {
   displayQuestion(questionCount);
   resetQuestion();
   updateProgressBar(questionCount);
-  console.log(questionCount);
+};
+
+const resetQuestion = () => {
+  nextBtn.style.display = 'none';
+  checkBtn.style.display = 'block';
+  optionList.classList.remove('disabled');
 };
 
 // Dynamically display the question number throughout the quiz
@@ -125,12 +135,14 @@ const evaluateAnswer = (answer, answerPrefix) => {
   }
 
   let userAnswer = answer.textContent;
-  console.log(userAnswer);
   let correctAnswer = questions[questionCount].answer;
   let allOptions = optionList.children.length;
 
   answer.classList.add('selected-option');
   answerPrefix.classList.add('selected-prefix');
+
+  let iconCheck = '<div class="icon-check"><i class="fas fa-check"></i></div>';
+  let iconX = '<div class="icon-x"><i class="fas fa-times"></i></div>';
 
   const showNextButton = () => {
     optionList.classList.add('disabled');
@@ -138,22 +150,25 @@ const evaluateAnswer = (answer, answerPrefix) => {
     checkBtn.style.display = 'none';
   };
 
-  let iconCheck = '<div class="icon-check"><i class="fas fa-check"></i></div>';
-  let iconX = '<div class="icon-x"><i class="fas fa-times"></i></div>';
-
-  checkBtn.onclick = () => {
-    // Next button is displayed when user checks answer unless quiz ends
+  const showFinishButton = () => {
     const finishBtn = document.querySelector('.finish-btn');
     if (questionCount < questions.length - 1) {
-      nextBtn.style.display = 'none';
-      checkBtn.style.display = 'block';
+      finishBtn.style.display = 'none';
     } else {
-      showFinishButton();
+      nextBtn.style.display = 'none';
+      checkBtn.style.display = 'none';
+      finishBtn.style.display = 'block';
+      finishBtn.onclick = () => {
+        showResultsBox();
+        finishBtn.style.display = 'none';
+      };
     }
+  };
 
+  checkBtn.onclick = () => {
     // Answer evaluation
-    if (userAnswer == undefined) {
-      console.log("You didn't select an answer");
+    if (userAnswer === undefined) {
+      alert('You need to select an answer');
     } else if (userAnswer === correctAnswer) {
       // When user checks answer all other options are disabled
       showNextButton();
@@ -161,17 +176,13 @@ const evaluateAnswer = (answer, answerPrefix) => {
       answer.classList.add('correct');
       answerPrefix.classList.add('correct-prefix');
       answer.insertAdjacentHTML('afterbegin', iconCheck);
-      console.log(userScore);
-      console.log('Correct Answer!');
       userAnswer = undefined;
-    } else if (userAnswer !== correctAnswer) {
+    } else {
       // When user checks answer all other options are disabled
       showNextButton();
-      console.log(userAnswer);
       answer.classList.add('wrong');
       answerPrefix.classList.add('wrong-prefix');
       answer.insertAdjacentHTML('afterbegin', iconX);
-      console.log('Wrong Answer!');
       userAnswer = undefined;
 
       // If user selects wrong answer, the correct answer also appears
@@ -183,13 +194,8 @@ const evaluateAnswer = (answer, answerPrefix) => {
         }
       }
     }
+    showFinishButton();
   };
-};
-
-const resetQuestion = () => {
-  nextBtn.style.display = 'none';
-  checkBtn.style.display = 'block';
-  optionList.classList.remove('disabled');
 };
 
 const showResultsBox = () => {
@@ -214,14 +220,4 @@ const showResultsBox = () => {
 
   containerQuiz.classList.add('hidden');
   containerEnd.classList.remove('hidden');
-};
-
-const showFinishButton = () => {
-  const finishBtn = document.querySelector('.finish-btn');
-  nextBtn.style.display = 'none';
-  checkBtn.style.display = 'none';
-  finishBtn.style.display = 'block';
-  finishBtn.onclick = () => {
-    showResultsBox();
-  };
 };
