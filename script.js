@@ -39,6 +39,7 @@ nextBtn.onclick = () => {
   updateProgressBar(questionCount);
 };
 
+// Resets question styling when user selects next question
 const resetQuestion = () => {
   nextBtn.style.display = 'none';
   checkBtn.style.display = 'block';
