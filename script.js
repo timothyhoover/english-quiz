@@ -183,7 +183,7 @@ const showResultsBox = () => {
   const results = document.querySelector('.results');
   if (userScore > 3) {
     let resultsText =
-      '<p>Congrats! You scored ' +
+      '<p>Great Job! You scored ' +
       userScore +
       ' <span>of</span> ' +
       questions.length +
