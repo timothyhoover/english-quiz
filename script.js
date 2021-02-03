@@ -1,32 +1,12 @@
-/* Starting Comments and Setup 
-
-Functionality Layout
-
-- Start container shows up first and user can click button to start quiz.
-- The number of questions should dynamically change.
-- User has to click option then click the check button to check answer
-- When user selects answer, the option container highlights red for false or green for correct
-    * The x and check icons need to be in white and only pop when user selects the check button
-    * The user should not be able to click on any other answer
-    * The background color for the prefix circle needs to first be filled with #a9a9a9 to confirm the answer has been selected.
-    * The background color and border for the wrong answer should be #b80000.
-    * The background color and border for the correct answer should be #62dbc8.
-- After user has clicked on the check button the next question button should appear.
-- When there are no more questions left, the end container should appear with the user's results
-
-
-*/
-
 // Get necessary quiz elements
 const containerStart = document.querySelector('.container-start');
 const containerEnd = document.querySelector('.container-end');
+const containerQuiz = document.querySelector('.container-quiz');
+const optionList = document.querySelector('.option-list');
+const checkBtn = document.querySelector('.check-btn');
 const startBtn = document.querySelector('.start-btn');
 const nextBtn = document.querySelector('.next-btn');
 const restartQuiz = document.querySelector('.restart-quiz');
-const optionList = document.querySelector('.option-list');
-const optionText = document.querySelector('.option-text');
-const containerQuiz = document.querySelector('.container-quiz');
-const checkBtn = document.querySelector('.check-btn');
 
 let option;
 let optionPrefix;

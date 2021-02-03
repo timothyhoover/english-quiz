@@ -127,6 +127,7 @@ button {
   display: inline-flex;
   justify-content: space-between;
   align-items: center;
+  transition: 0.3s ease;
 }
 
 .container-quiz .option-list .option.selected-option {
@@ -143,6 +144,9 @@ button {
 }
 
 .container-quiz .option-list .option.correct {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
   width: 100%;
   height: 5rem;
   margin-bottom: 1.5rem;
@@ -151,12 +155,10 @@ button {
   background-color: #62dbc8;
   border: 1px solid #62dbc8;
   color: #fff;
-  display: inline-flex;
-  justify-content: space-between;
-  align-items: center;
 }
 
 .container-quiz .option-list .option.wrong {
+  display: inline-flex;
   width: 100%;
   height: 5rem;
   margin-bottom: 1.5rem;
@@ -165,7 +167,6 @@ button {
   background-color: #b80000;
   border: 1px solid #b80000;
   color: white;
-  display: inline-flex;
   justify-content: space-between;
   align-items: center;
 }
@@ -373,32 +374,6 @@ button {
   align-items: center;
   justify-content: center;
 }
-
-/* .container-end .restart-btn button {
-  font-size: 1.8rem;
-  font-weight: 500;
-  text-align: center;
-  width: 14rem;
-  padding: 0.6rem;
-  margin-right: 3rem;
-  border-radius: 0.7rem;
-  color: #fff;
-  border: 2px solid #62dbc8;
-  background-color: #62dbc8;
-  transition: 0.3s ease;
-}
-
-.container-end .restart-btn button:hover {
-  font-size: 1.8rem;
-  font-weight: 500;
-  text-align: center;
-  width: 14rem;
-  padding: 0.6rem;
-  border-radius: 0.7rem;
-  color: #fff;
-  border: 2px solid #78ddce;
-  background-color: #78ddce;
-} */
 
 .container-end .restart-quiz button {
   font-size: 1.8rem;
